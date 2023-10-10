@@ -1,3 +1,71 @@
+
+
+
+/*Retrieving Data with SELECT Statement*/
+
+/* Using SELECT statement to select data from the database.Where * denotes All  */
+SELECT * from station_data
+
+/*Using LIMIT clause to view a limited number of rows*/
+SELECT * from station_data LIMIT 3
+
+/*Retrieving specific columns from the table station_data by giving their name*/
+SELECT report_code, year, tornado from station_data
+
+/* Adding a new column by modifying the existing column  */
+SELECT dew_point,
+station_pressure,
+visibility,
+wind_speed,
+(temperature-32)*0.56 AS temperature_celsius
+FROM station_data
+
+/*Using the Round function here to decrease the number of decimals in the column*/
+SELECT dew_point,
+station_pressure,
+visibility,
+wind_speed,
+round((temperature-32)*0.56 )AS temperature_celsius
+FROM station_data
+
+/**EXCERCISE 1**/
+/**Write a SQL query to select the columns dew_point, station_pressure, visibility and create a new column that has the wind_speed in terms of meters per second upto one decimal **/
+
+   /**Hint: wind_speed_mps = wind_speed*3.6**/
+
+
+
+
+
+
+/*****Working with Dates and Times*****/
+
+
+/*1. Finding the Date now*/
+SELECT DATE('now')
+
+/*2. Finding the Date yesterday*/
+SELECT DATE('now', '-1 day')
+
+/*3. Finding the Date in Past from now*/
+SELECT DATE('now','+3 month', '-1 day')
+
+/*4. Finding the Date in Past from date in past*/
+SELECT DATE('2018-12-04','+3 month', '-1 day')
+
+/*5. Finding time now in Greenwich time*/
+SELECT TIME('now')
+
+/**EXCERCISE 2**/
+/**Write a SQL query to find the present date by adding your AGE in years, months, days to your birthyear **/
+  /** Hint: SELECT DATE('YYYY-MM-DD','+AGE year' ,'+no.of month','+no.of day')**/
+
+
+
+
+
+   
+   
 /*****Filtering Data using WHERE Statement - Numeric*****/
 
 /*1.Using SELECT statement to view the database*/
@@ -17,6 +85,7 @@ SELECT * FROM station_data
 WHERE year BETWEEN 2005 AND 2010
 
 /*5.Using WHERE clause and less than equal signs to filter data between a range */
+SELECT * FROM station_data
 WHERE year >= 2005 AND year <= 2010
 
 /*6.Using WHERE clause to select data from specific records in columns /
@@ -59,6 +128,14 @@ WHERE report_code LIKE 'B_C%'
 /*14. Using REGEXP operation keyword for textual filtering*/
 SELECT * FROM station_data
 WHERE report_code REGEXP '^A.*$'  
+
+/**EXCERCISE 3**/
+/*** 3a. Write a SQL query to filter all records data between year 2009 and 2012
+     3b. Write a SQL query to filter data from the month of May and October of every year
+     3c. write a SQL query to filter data where every report_code starts with letter 'C' and has third letter as '9' ***/
+
+
+
 
 /*****Filtering Data using WHERE Statement - Boolean*****/
 
@@ -104,6 +181,8 @@ OR snow_depth > 0
 SELECT * FROM station_data
 WHERE (rain = 1 AND temperature <=32)
 OR snow_depth > 0
+
+
 
 /***** Using Aggregate Functions that reduce data into a single value *****/
 
@@ -183,11 +262,19 @@ GROUP BY year
 SELECT year,
 SUM(snow_depth) AS total_snow,
 SUM(precipitation) AS total_precipitation,
-MAX(precipitation) AS max_precipitation,
-MIN(precipitaion) AS min_precipitation
+MAX(precipitation) AS max_precipitation
 FROM station_data
 WHERE year>= 2005
 GROUP BY year
+
+
+/**EXCERCISE 4**/
+/**Write an SQL Query to Select data yearwise and monthwise with data recorded post 2004 and ordered by latest first and giving data of the sum of windspeed, sum of visibility and maximum visibility **/
+
+
+
+
+
 
 
 /*33. Using CASE expression to add another coulmn to the data table*/
@@ -202,6 +289,22 @@ END AS wind_severity
 
 FROM station_data
 
+/* JOIN is used to join to two tables to create a much more descriptive view of your data.In here the parent table supplies data and child table receives data*/
 
+/*34. Using JOIN operation*/
+SELECT ORDER_ID,
+CUSTOMER.CUSTOMER_ID,
+ORDER_DATE,
+SHIP_DATE,
+NAME,
+STREET_ADDRESS,
+CITY,
+STATE,
+ZIP,
+PRODUCT_ID,
+ORDER_QTY
+
+FROM CUSTOMER INNER JOIN CUSTOMER_ORDER
+ON CUSTOMER.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID 
 
 
