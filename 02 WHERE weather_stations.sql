@@ -289,6 +289,12 @@ END AS wind_severity
 
 FROM station_data
 
+
+
+/**** Reviewing the database from rexon_metals*****/
+SELECT * FROM CUSTOMER
+
+
 /* JOIN is used to join to two tables to create a much more descriptive view of your data.In here the parent table supplies data and child table receives data*/
 
 /*34. Using JOIN operation*/
