@@ -291,26 +291,36 @@ FROM station_data
 
 
 
-/**** Reviewing the database from rexon_metals*****/
-SELECT * FROM CUSTOMER
+/**** Reviewing the database from weather_stations*****/
 
 
 /* JOIN is used to join to two tables to create a much more descriptive view of your data.In here the parent table supplies data and child table receives data*/
 
-/*34. Using JOIN operation*/
-SELECT ORDER_ID,
-CUSTOMER.CUSTOMER_ID,
-ORDER_DATE,
-SHIP_DATE,
-NAME,
-STREET_ADDRESS,
-CITY,
-STATE,
-ZIP,
-PRODUCT_ID,
-ORDER_QTY
+/*34. Using INNER JOIN operation*/
+SELECT place,
+station_location.report_code,
+state,
+zip_code,
+weather_forecaster,
+time,
+city,
+accuracy
 
-FROM CUSTOMER INNER JOIN CUSTOMER_ORDER
-ON CUSTOMER.CUSTOMER_ID = CUSTOMER_ORDER.CUSTOMER_ID 
+FROM station_location INNER JOIN report_information
+ON station_location.report_code = report_information.report_code
+
+/*34. Using LEFT JOIN operation*/
+
+SELECT place,
+station_location.report_code,
+state,
+zip_code,
+weather_forecaster,
+time,
+city,
+accuracy
+
+FROM station_location LEFT JOIN report_information
+ON station_location.report_code = report_information.report_code
 
 
