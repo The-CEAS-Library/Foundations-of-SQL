@@ -323,4 +323,37 @@ accuracy
 FROM station_location LEFT JOIN report_information
 ON station_location.report_code = report_information.report_code
 
+/*35. Using LEFT JOIN operation*/
+
+SELECT place,
+station_location.report_code,
+state,
+zip_code,
+weather_forecaster,
+time,
+city,
+accuracy
+
+FROM station_location LEFT JOIN report_information
+ON station_location.report_code = report_information.report_code
+
+/*36. Using INSERT INTO operation*/
+INSERT INTO station_location 
+VALUES ('chicago', 'D6DAQR', 'illinois' , '60007');
+
+SELECT * from station_location
+
+/*37. Using UPDATE operation*/
+UPDATE report_information
+SET weather_forecaster='Juan Burns'
+WHERE city='cincinnati';
+
+SELECT * from report_information
+
+/*38. Using DELETE operation*/
+
+DELETE FROM station_location WHERE place ='chicago';
+
+SELECT * from station_location
+
 
