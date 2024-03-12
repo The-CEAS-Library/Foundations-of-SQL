@@ -48,7 +48,7 @@ SELECT DATE('2018-12-04','+3 month', '-1 day')
 SELECT TIME('now')
 
 /*6. Finding time difference*/
-SELECT '16:30' < '08:30'
+SELECT '16:30' - '08:30'
 
 /* JOIN is used to join to two tables to create a much more descriptive view of your data.In here the parent table supplies data and child table receives data*/
 
